@@ -1,8 +1,8 @@
-![logo](https://courseify5.herokuapp.com/img/courseifyLogo.png)
-# Courseify - *Learn from the best.*
+<!-- ![logo](https://courseify5.herokuapp.com/img/courseifyLogo.png) -->
+# VidhyaSrot - *Learn from the best.*
 
-Courseify is an online education courses website.   
-Check out the live deployment here: https://courseify5.herokuapp.com/courses    
+VidhyaSrot is an online education courses website.   
+<!-- Check out the live deployment here: https://courseify5.herokuapp.com/courses     -->
 
 ## Features
 - Create your own account and login, fully secure.
@@ -13,6 +13,7 @@ Check out the live deployment here: https://courseify5.herokuapp.com/courses
 - Enroll in any course you wish to
 - View all your enrolled courses in your profile
 - View course ratings and leave a review
+- Live Video Calling for instructor to meeting with student
 
 ## Tech Stack used
 #### Backend
@@ -35,7 +36,7 @@ git clone https://github.com/Vishruth-S/courseify.git
 ```
 2. Navigate to the project folder
 ```
-cd courseify
+cd VidhyaSrot
 ```
 3. Install dependencies
 ```
@@ -45,4 +46,4 @@ npm install
 ```
 npm start
 ```
-(On starting, there will be no courses since a new local database will be created. You may create accounts and add courses to check out the full functionality of the application. Alternatively, you can also checkout the fully deployed app [here](https://courseify5.herokuapp.com/courses)
+(On starting, there will be no courses since a new local database will be created. You may create accounts and add courses to check out the full functionality of the application. )
