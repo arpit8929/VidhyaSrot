@@ -94,6 +94,10 @@ app.get('/GoToCourse',(req,res)=> {
     res.redirect('/courses/GoToCourse')
 })
 
+app.get('/edit',(req,res)=> {
+    res.redirect('/courses/edit')
+})
+
 app.all('*', (req, res, next) => {
     req.flash('error', 'something went wrong')
     res.redirect('/courses/')
