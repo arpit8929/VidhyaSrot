@@ -32,7 +32,7 @@ VidhyaSrot is an online education courses website.
 *Note: To run this app locally, [MongoDB](https://www.mongodb.com/) must be installed on the system* 
 1. Clone this repo
 ```
-git clone https://github.com/Vishruth-S/courseify.git
+git clone https://github.com/arpit8929/VidhyaSrot.git
 ```
 2. Navigate to the project folder
 ```
