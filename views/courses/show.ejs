@@ -10,6 +10,21 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/f9cc6eebb4.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("live-class-btn").addEventListener("click", function() {
+          // Make an API call to a server-side route to trigger execution
+          fetch('/api/start-live-class', {
+            method: 'POST'
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Live class started:', data);
+          })
+          .catch(error => {
+            console.error('Error starting live class:', error);
+          });
+        });
+      </script>
 
     <link rel="stylesheet" href="/css/stars.css">
 </head>
@@ -58,9 +73,12 @@
                         <% } %>
                             <% if(currentUser && course.enrollers.includes(currentUser._id)) { %>
                                 <button class="btn btn-secondary btn-already" disabled>Already enrolled</button>
-                                <a href="/courses/GoToCourse">
-                                <button class="enroll-btn red-btn btn btn-success" >Go to Course</button>
-                            </a>
+                                <button class="enroll-btn red-btn btn btn-success" >
+                                    <a href="/courses/<%= course.id %>/GoToCourse">Go to Course</a>
+                                </button>
+                                <button class="enroll-btn btn btn-success" id="live-class-btn">
+                                    <a href="http://localhost:3030">Live Class</a>
+                                </button>
                                 <% } else { %>
                                     <div>
                                         <form action="/courses/<%=course._id%>/enroll" method="POST">
@@ -171,6 +189,7 @@
                 crossorigin="anonymous"></script>
             <script src='/scripts/validateForms.js'>
             </script>
+            
             <%- include('../partials/footer')%>
 </body>
 

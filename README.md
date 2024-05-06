@@ -1,8 +1,6 @@
-<!-- ![logo](https://courseify5.herokuapp.com/img/courseifyLogo.png) -->
 # VidhyaSrot - *Learn from the best.*
 
 VidhyaSrot is an online education courses website.   
-<!-- Check out the live deployment here: https://courseify5.herokuapp.com/courses     -->
 
 ## Features
 - Create your own account and login, fully secure.

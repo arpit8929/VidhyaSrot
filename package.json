@@ -1,5 +1,5 @@
 {
-  "name": "courseify",
+  "name": "VidhyaSrot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "vishruthS",
+  "author": "Arpit",
   "license": "ISC",
   "dependencies": {
     "connect-flash": "^0.1.1",

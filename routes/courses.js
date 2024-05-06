@@ -83,6 +83,10 @@ router.put('/:id', isLoggedIn, isAuthor, async (req, res) => {
     res.redirect(`/courses/${course._id}`)
 })
 
+router.get('/index.html', (req, res) => {
+    res.redirect('/VLive/static/index.html');
+  });
+
 router.delete('/:id', isLoggedIn, isAuthor, async (req, res) => {
     const { id } = req.params
     await Course.findByIdAndDelete(id)

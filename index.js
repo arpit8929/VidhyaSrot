@@ -98,6 +98,10 @@ app.get('/edit',(req,res)=> {
     res.redirect('/courses/edit')
 })
 
+app.get('/index.html',(req,res)=> {
+    res.redirect('/VLive/static/index.html')
+})
+
 app.all('*', (req, res, next) => {
     req.flash('error', 'something went wrong')
     res.redirect('/courses/')
@@ -108,6 +112,8 @@ app.get('/makepost', async (req, res) => {
     await newPost.save()
     res.send(newPost)
 })
+
+
 
 
 
