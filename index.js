@@ -31,6 +31,7 @@ db.once("open", () => {
     console.log("Database connected")
 })
 
+const { spawn } = require('child_process');
 const app = express()
 
 app.engine('ejs', ejsMate)
@@ -112,6 +113,23 @@ app.get('/makepost', async (req, res) => {
     await newPost.save()
     res.send(newPost)
 })
+
+app.get('/runcode', (req, res) => {
+    const secondProjectProcess = spawn('node', ['/VLive/Live.js']);
+
+    // Log output of the second project (optional)
+    secondProjectProcess.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    });
+
+    // Handle errors (optional)
+    secondProjectProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+    });
+
+    // Send response
+    res.send('Running second project...');
+});
 
 
 

@@ -10,21 +10,7 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/f9cc6eebb4.js" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById("live-class-btn").addEventListener("click", function() {
-          // Make an API call to a server-side route to trigger execution
-          fetch('/api/start-live-class', {
-            method: 'POST'
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Live class started:', data);
-          })
-          .catch(error => {
-            console.error('Error starting live class:', error);
-          });
-        });
-      </script>
+    
 
     <link rel="stylesheet" href="/css/stars.css">
 </head>
@@ -76,9 +62,18 @@
                                 <button class="enroll-btn red-btn btn btn-success" >
                                     <a href="/courses/<%= course.id %>/GoToCourse">Go to Course</a>
                                 </button>
-                                <button class="enroll-btn btn btn-success" id="live-class-btn">
-                                    <a href="http://localhost:3030">Live Class</a>
-                                </button>
+                                <button class="enroll-btn btn btn-success" id="runButton">Live Class</button>
+                                <script>
+                                    document.getElementById('runButton').addEventListener('click', function() {
+                                        fetch('/runcode') // Assuming your server is running on localhost:3000
+                                            .then(response => response.text())
+                                            .then(data => {
+                                                console.log(data); // Log the response from the server
+                                                // You can add more code here to handle the response
+                                            })
+                                            .catch(error => console.error('Error:', error));
+                                    });
+                                </script>
                                 <% } else { %>
                                     <div>
                                         <form action="/courses/<%=course._id%>/enroll" method="POST">
