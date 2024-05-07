@@ -60,7 +60,7 @@ io.on("connection", (socket) => { // When a user coonnects to our server
         });
 
         socket.on("disconnect", () => { // When a user disconnects or leaves
-            socket.to(roomId).broadcast.emit("user-disconnected", id);
+            socket.to(roomId).emit("user-disconnected", id);
         });
     });
 });

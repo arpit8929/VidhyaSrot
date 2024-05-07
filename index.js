@@ -115,7 +115,7 @@ app.get('/makepost', async (req, res) => {
 })
 
 app.get('/runcode', (req, res) => {
-    const secondProjectProcess = spawn('node', ['/VLive/Live.js']);
+    const secondProjectProcess = spawn('node', ['/VIDHYASROT/VLive/Live.js']);
 
     // Log output of the second project (optional)
     secondProjectProcess.stdout.on('data', (data) => {
