@@ -1,6 +1,7 @@
 const { resolveInclude } = require('ejs')
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
 const { isLoggedIn, isAuthor } = require('../middleware')
 
 const Course = require('../models/Course')
@@ -37,28 +38,24 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('courses/new')
 })
 
-router.post('/add', async (req, res) => {
-    let { title, image, description, type, tags, courseUrl } = req.body.course;
+router.post('/new',isLoggedIn, async (req, res) => {
+    let { title, image, description, tags, courseUrl } = req.body.course;
     let newCourse = new Course({
         title,
         image,
         description,
-        type,
         tags,
-        // author: req.user._id,
-        courseUrl,
+        author: req.user._id,
+        courseUrl
     }
     );
-try {
-    await newCourse.save();
-    req.flash('success', 'Successfully made a new Course!');
-    // res.redirect(`/courses/${newCourse._id}`);
-            res.status(201).json({ id: newCourse._id, message: 'Successfully created new course' });
-
-  
-} catch (err) {
-    res.render('courses/new', { title: 'New Course', error: err.message });
-}
+    try {
+        await newCourse.save();
+        req.flash('success', 'Successfully made a new Course!');
+        res.redirect(`/courses`);
+    } catch (err) {
+        res.render('courses/new', { title: 'New Course', error: err.message });
+    }
 });
 router.get('/:id', async (req, res) => {
     const course = await Course.findById(req.params.id).populate({
@@ -93,16 +90,14 @@ router.get('/:id/edit', isLoggedIn, isAuthor, async (req, res) => {
 
 router.put('/:id', isLoggedIn, isAuthor, async (req, res) => {
     const courseId = req.params.id;
-    const { title, image, description, type, tags, urlType, courseUrl, ytPlaylistUrl } = req.body.course;
-    const course = await Course.findByIdAndUpdate(courseId, {
+    let { title, image, description, tags, courseUrl } = req.body.course;
+    let newCourse = new Course({
         title,
         image,
         description,
-        type,
         tags,
-        urlType,
-        courseUrl: urlType === 'website' ? courseUrl : null,
-        ytPlaylistUrl: urlType === 'youtube' ? ytPlaylistUrl : null
+        author: req.user._id,
+        courseUrl
     }, { new: true });
     try {
         await course.save();

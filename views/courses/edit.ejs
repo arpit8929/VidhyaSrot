@@ -11,46 +11,12 @@
                         Looks good!
                     </div>
                 </div>
-                <!-- <div class="mb-3">
-                        <label class="form-label" for="courseType">Course Type</label>
-                        <select class="form-select" id="courseType" name="course[type]" required>
-                            <option value="" disabled selected>Select course type</option>
-                            <option value="free">Free</option>
-                            <option value="paid">Paid</option>
-                        </select>
-                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="courseUrl">Course URL</label>
-                        <input class="form-control" type="text" id="courseUrl" name="course[url]" required>
-                    </div>
+                <div class="mb-3 course-details">
+                    <label class="form-label" for="courseUrl">Course URL</label>
+                    <input class="form-control" type="text" id="courseUrl" name="course[courseUrl]" required>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="courseDuration">Course Duration</label>
-                        <select class="form-select" id="courseDuration" name="course[duration]" required>
-                            <option value="" disabled selected>Select course duration</option>
-                            <option value="1 month">1 Month</option>
-                            <option value="2 months">2 Months</option>
-                            <option value="3 months">3 Months</option>
-                            <option value="6 months">6 Months</option>
-                            <option value="1 year">1 Year</option>
-                            <option value="2 years">2 Years</option>
-                            <option value="lifetime">Lifetime</option>
-                        </select>
-                    </div> -->
-                
-                    <div class="mb-3 course-details">
-                        <div class="paid-course-details" style="display: none;">
-                          <label class="form-label" for="url">Course URL</label>
-                          <input class="form-control" type="text" id="url" name="course[courseDetails][url]" required>
-                        </div>
-                    
-                        <div class="free-course-details" style="display: none;">
-                          <label class="form-label" for="ytPlaylistUrl">YouTube Playlist URL</label>
-                          <input class="form-control" type="text" id="ytPlaylistUrl" name="course[courseDetails][ytPlaylistUrl]" required>
-                        </div>
-                      </div>   
-                
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
                     <input class="form-control" type="text" id="image" name="course[image]" value="<%=course.image%>"
@@ -85,14 +51,14 @@
         const typeSelect = document.getElementById('type');
         const paidCourseDetails = document.querySelector('.paid-course-details');
         const freeCourseDetails = document.querySelector('.free-course-details');
-      
+
         typeSelect.addEventListener('change', () => {
-          if (typeSelect.value === 'paid') {
-            paidCourseDetails.style.display = 'block';
-            freeCourseDetails.style.display = 'none';
-          } else if (typeSelect.value === 'free') {
-            paidCourseDetails.style.display = 'none';
-            freeCourseDetails.style.display = 'block';
-          }
+            if (typeSelect.value === 'paid') {
+                paidCourseDetails.style.display = 'block';
+                freeCourseDetails.style.display = 'none';
+            } else if (typeSelect.value === 'free') {
+                paidCourseDetails.style.display = 'none';
+                freeCourseDetails.style.display = 'block';
+            }
         });
     </script>

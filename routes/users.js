@@ -66,9 +66,6 @@ router.get('/users/:id', async (req, res) => {
         await userCourses.push(currentCourse)
     })
     console.log(userCourses)
-
-
-
     })
 
 

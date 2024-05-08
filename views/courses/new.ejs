@@ -4,7 +4,7 @@
             <div class="row">
                 <h1 class="text-center">New Course</h1>
                 <div class="col-6 offset-3">
-                    <form action="/courses" method="POST" novalidate class="validated-form">
+                    <form action="/courses/new" method="POST" novalidate class="validated-form">
                         <div class="mb-3">
                             <label class="form-label" for="title">Title</label>
                             <input class="form-control" type="text" id="title" name="course[title]" required>
@@ -13,28 +13,13 @@
                             </div>
                         </div>
 
-                        
-
-                        <div class="mb-3">
-                            <label class="form-label" for="type">Course Type</label>
-                            <select class="form-select" id="type" name="course[type]" required>
-                                <option value="" disabled selected>Select course type</option>
-                                <option value="paid">Paid</option>
-                                <option value="free">Free</option>
-                            </select>
-                        </div>
-
                         <div class="mb-3 course-details">
-                          <div class="paid-course-details" style="display: none;">
-                              <label class="form-label" for="url">Course URL</label>
-                              <input class="form-control" type="text" id="url" name="course[courseDetails][courseUrl]" required>
-                          </div>
+                          
+                              <label class="form-label" for="courseUrl">Course URL</label>
+                              <input class="form-control" type="text" id="courseUrl" name="course[courseUrl]" required>
+                          
                       
-                          <div class="free-course-details" style="display: none;">
-                              <label class="form-label" for="ytPlaylistUrl">YouTube Playlist URL</label>
-                              <input class="form-control" type="text" id="ytPlaylistUrl" name="course[courseDetails][ytPlaylistUrl]" required>
-                          </div>
-                      </div>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="image">Image URL</label>
@@ -66,18 +51,4 @@
                     </form>
                 </div>
             </div>
-            <script>
-                const typeSelect = document.getElementById('type');
-                const paidCourseDetails = document.querySelector('.paid-course-details');
-                const freeCourseDetails = document.querySelector('.free-course-details');
-              
-                typeSelect.addEventListener('change', () => {
-                  if (typeSelect.value === 'paid') {
-                    paidCourseDetails.style.display = 'block';
-                    freeCourseDetails.style.display = 'none';
-                  } else if (typeSelect.value === 'free') {
-                    paidCourseDetails.style.display = 'none';
-                    freeCourseDetails.style.display = 'block';
-                  }
-                });
-              </script>
+            

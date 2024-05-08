@@ -113,7 +113,7 @@ app.get('/index.html',(req,res)=> {
 
 app.all('*', (req, res, next) => {
     req.flash('error', 'something went wrong')
-    res.redirect('/courses/')
+    res.redirect('/courses')
 })
 
 app.get('/makepost', async (req, res) => {
