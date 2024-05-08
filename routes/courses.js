@@ -37,14 +37,29 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('courses/new')
 })
 
-router.post('/', isLoggedIn, async (req, res) => {
-    const course = new Course(req.body.course)
-    course.author = req.user._id
-    await course.save()
-    req.flash('success', 'Sucessfully made a new Course!')
-    res.redirect(`/courses/${course._id}`)
-})
+router.post('/add', async (req, res) => {
+    let { title, image, description, type, tags, courseUrl } = req.body.course;
+    let newCourse = new Course({
+        title,
+        image,
+        description,
+        type,
+        tags,
+        // author: req.user._id,
+        courseUrl,
+    }
+    );
+try {
+    await newCourse.save();
+    req.flash('success', 'Successfully made a new Course!');
+    // res.redirect(`/courses/${newCourse._id}`);
+            res.status(201).json({ id: newCourse._id, message: 'Successfully created new course' });
 
+  
+} catch (err) {
+    res.render('courses/new', { title: 'New Course', error: err.message });
+}
+});
 router.get('/:id', async (req, res) => {
     const course = await Course.findById(req.params.id).populate({
         path: 'reviews',
@@ -77,15 +92,30 @@ router.get('/:id/edit', isLoggedIn, isAuthor, async (req, res) => {
 })
 
 router.put('/:id', isLoggedIn, isAuthor, async (req, res) => {
-    const { id } = req.params
-    const course = await Course.findByIdAndUpdate(id, { ...req.body.course })
-    req.flash('success', 'Sucessfully updated!')
-    res.redirect(`/courses/${course._id}`)
+    const courseId = req.params.id;
+    const { title, image, description, type, tags, urlType, courseUrl, ytPlaylistUrl } = req.body.course;
+    const course = await Course.findByIdAndUpdate(courseId, {
+        title,
+        image,
+        description,
+        type,
+        tags,
+        urlType,
+        courseUrl: urlType === 'website' ? courseUrl : null,
+        ytPlaylistUrl: urlType === 'youtube' ? ytPlaylistUrl : null
+    }, { new: true });
+    try {
+        await course.save();
+        req.flash('success', 'Sucessfully updated!')
+        res.redirect(`/courses/${course._id}`)
+    } catch (err) {
+        res.render('courses/edit', { title: 'Edit Course', course, error: err.message });
+    }
 })
 
 router.get('/index.html', (req, res) => {
     res.redirect('/VLive/static/index.html');
-  });
+});
 
 router.delete('/:id', isLoggedIn, isAuthor, async (req, res) => {
     const { id } = req.params

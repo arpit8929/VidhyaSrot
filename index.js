@@ -15,6 +15,8 @@ const reviewsRoutes = require('./routes/reviews')
 
 const MongoDBStore = require('connect-mongo')(session)
 
+
+
 require('dotenv').config()
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/devcraft"
 // const dbUrl = "mongodb://localhost:27017/devcraft"
@@ -33,6 +35,7 @@ db.once("open", () => {
 
 const { spawn } = require('child_process');
 const app = express()
+app.use(express.json());
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
@@ -63,6 +66,11 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+    console.log(`Sever running on http://localhost:${PORT}`)
+})
 app.use(session(sessionConfig))
 app.use(flash())
 
@@ -84,7 +92,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', userRoutes)
-app.use('/courses/', postRoutes)
+app.use('/courses', postRoutes)
 app.use('/courses/:id/reviews/', reviewsRoutes)
 
 app.get('/', (req, res) => {
@@ -135,8 +143,3 @@ app.get('/runcode', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 5000
-
-app.listen(PORT, () => {
-    console.log(`Sever running on http://localhost:${PORT}`)
-})

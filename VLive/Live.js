@@ -65,27 +65,6 @@ io.on("connection", (socket) => { // When a user coonnects to our server
     });
 });
 
-// app.post('/api/start-live-class', (req, res) => {
-//     const { spawn } = require('child_process');
-  
-//     // Replace 'start_live_class.sh' with the actual command to start your project
-//     const process = spawn('node', ['Live.js']);
-  
-//     process.stdout.on('data', (data) => {
-//       console.log(`Live class project output: ${data}`);
-//     });
-  
-//     process.stderr.on('data', (data) => {
-//       console.error(`Error starting live class project: ${data}`);
-//     });
-  
-//     process.on('close', (code) => {
-//       console.log(`Live class project exited with code: ${code}`);
-//       res.json({ message: 'Live class started successfully!' });
-//     });
-//   });
-
-//server.listen(process.env.PORT || 3030); // Listen on port 3030.
 
 const PORT = process.env.PORT || 3030
 
