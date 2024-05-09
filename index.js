@@ -107,9 +107,7 @@ app.get('/edit',(req,res)=> {
     res.redirect('/courses/edit')
 })
 
-app.get('/index.html',(req,res)=> {
-    res.redirect('/VLive/static/index.html')
-})
+
 
 app.all('*', (req, res, next) => {
     req.flash('error', 'something went wrong')
@@ -122,22 +120,7 @@ app.get('/makepost', async (req, res) => {
     res.send(newPost)
 })
 
-app.get('/runcode', (req, res) => {
-    const secondProjectProcess = spawn('node', ['/VIDHYASROT/VLive/Live.js']);
 
-    // Log output of the second project (optional)
-    secondProjectProcess.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-    });
-
-    // Handle errors (optional)
-    secondProjectProcess.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    // Send response
-    res.send('Running second project...');
-});
 
 
 
